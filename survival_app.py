@@ -4,6 +4,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from lifelines import CoxPHFitter, KaplanMeierFitter
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
 
 # Set layout configuration
 st.set_page_config(page_title="Enterprise Churn Survival Suite", layout="wide", initial_sidebar_state="expanded")
@@ -179,7 +182,12 @@ with st.container():
 @st.cache_data
 def load_and_prepare_data():
     """Load real Telco customer churn data and prepare for modeling."""
-    df = pd.read_csv('Data/Telco-Customer-Churn.csv')
+    data_path = BASE_DIR / 'Data' / 'Telco-Customer-Churn.csv'
+    if not data_path.exists():
+        st.error(f"Data file not found: {data_path}")
+        st.stop()
+
+    df = pd.read_csv(data_path)
     
     # Create Event binary variable
     df['Event'] = df['Churn'].apply(lambda x: 1 if x == 'Yes' else 0)
