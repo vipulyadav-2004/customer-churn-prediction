@@ -389,7 +389,7 @@ with tab3:
                          alpha=0.15, color='#667eea')
         ax4.set_xlabel("Future Tenure (Months)", fontsize=11, fontweight='bold')
         ax4.set_ylabel("Survival Probability", fontsize=11, fontweight='bold')
-        ax4.set_xlim(0, 72)
+        ax4.set_xlim(0, 84)
         ax4.set_ylim(0, 1.05)
         ax4.legend(loc='lower left', fontsize=10)
         ax4.grid(True, linestyle='--', alpha=0.3)
